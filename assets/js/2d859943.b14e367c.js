@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkafka_training=self.webpackChunkkafka_training||[]).push([[7145],{2332:a=>{a.exports=JSON.parse('{"metadata":{"permalink":"/kafka-training/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
