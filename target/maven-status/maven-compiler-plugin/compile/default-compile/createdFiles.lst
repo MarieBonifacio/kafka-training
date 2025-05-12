@@ -1,0 +1,4 @@
+com\example\kafka\service\KafkaProducerService.class
+com\example\kafka\service\KafkaProducerServicePerson.class
+com\example\kafka\model\Person.class
+com\example\kafka\service\KafkaConsumerService.class

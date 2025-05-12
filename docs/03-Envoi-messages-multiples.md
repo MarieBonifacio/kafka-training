@@ -1,4 +1,5 @@
 ---
+id: 03-envoi-messages-multiples
 title: Envoi de messages multiples 
 description: Ce document explique comment envoyer plusieurs messages en utilisant Kafka.
 ---

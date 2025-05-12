@@ -1,4 +1,5 @@
 ---
+id: 02-producer-consumer-separation
 title: Séparer Producteur et Consommateur Kafka 
 description: Ce document explique comment séparer la logique de production et de consommation dans des classes Java dédiées.
 ---

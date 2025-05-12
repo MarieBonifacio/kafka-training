@@ -1,4 +1,5 @@
 ---
+id: 01-setup-local-kafka
 title: Mise en place de Kafka avec Testcontainers
 ---
 

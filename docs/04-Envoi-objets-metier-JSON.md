@@ -1,4 +1,5 @@
 ---
+id: 04-envoi-objets-metier-JSON
 title: Envoi d'objets métier en JSON
 description: Ce document explique comment envoyer des objets métier en JSON en utilisant Kafka.
 ---
