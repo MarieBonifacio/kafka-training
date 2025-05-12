@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkafka_training=self.webpackChunkkafka_training||[]).push([[1903],{1912:a=>{a.exports=JSON.parse('{"blogBasePath":"/kafka-training/blog","blogTitle":"Blog","authorsListPath":"/kafka-training/blog/authors"}')}}]);
