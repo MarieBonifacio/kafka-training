@@ -25,10 +25,14 @@ Passer de simples chaînes de caractères (String) à des objets Java (POJO) env
 
 ## 🧠 Pourquoi Jackson ?
 
-**Jackson** est une bibliothèque Java très populaire pour transformer des objets Java en JSON (sérialisation), et inversement (désérialisation).
 
-Kafka ne comprend pas les objets Java — il envoie des **tableaux d'octets** ou du texte.  
-Pour transmettre un objet métier comme `Person`, nous devons donc le **convertir en JSON**, puis le retransformer à la réception.
+Kafka est conçu pour transmettre des données sous forme de **tableaux d'octets** ou de **texte brut**. Cependant, dans les applications modernes, nous travaillons souvent avec des objets complexes (comme `Person`), qui ne peuvent pas être envoyés directement.
+
+Pour résoudre ce problème :
+1. Nous utilisons **Jackson** pour convertir nos objets Java en JSON (sérialisation).
+2. À la réception, nous utilisons Jackson pour reconvertir le JSON en objets Java (désérialisation).
+
+JSON (JavaScript Object Notation) est un format léger et lisible par les humains, idéal pour transmettre des données structurées.
 
 ---
 
@@ -46,14 +50,31 @@ src/main/java/com/example/kafka/model/Person.java
 package com.example.kafka;
 
 public class Person {
-    public String name;
-    public int age;
+    private String name;
+    private int age;
 
     // Obligatoire pour Jackson (constructeur vide)
     public Person() {}
 
     public Person(String name, int age) {
         this.name = name;
+        this.age = age;
+    }
+
+    // Getters et setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -89,7 +110,8 @@ src/
 
  ## 📦 Ajouter Jackson et les sérializers Kafka
 
- Dans ton `pom.xml`, ajoute :
+Pour utiliser Jackson et Kafka dans notre projet, nous devons ajouter les dépendances suivantes dans le fichier `pom.xml` :
+
 
 ```xml
  <!-- Jackson core -->
@@ -106,8 +128,9 @@ src/
     <version>7.5.0</version>
 </dependency>
 ```
-> 🟨 Note : si jamais tu ne veux pas utiliser la lib de Confluent, on peut aussi faire nos propres JsonSerializer et JsonDeserializer manuellement. Mais Confluent fonctionne bien pour un test simple.
-
+> Pourquoi ces dépendances ?
+Jackson Databind : Permet de convertir des objets Java en JSON et vice-versa.
+Kafka JSON Schema Serializer : Fournit des sérialiseurs et désérialiseurs prêts à l'emploi pour Kafka.
 ---
 
 ## 🛠️ Producteur Kafka avec Jackson
@@ -118,60 +141,31 @@ src/main/java/com/example/kafka/service/KafkaProducerServicePerson.java
 ```
 
 ```java
-package com.example.kafka.service;
 
-import com.example.kafka.model.Person;
-import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.common.serialization.StringSerializer;
-import io.confluent.kafka.serializers.json.KafkaJsonSchemaSerializer;
+---
 
-import java.util.Properties;
+#### **4. Ajouter des explications dans le producteur Kafka :**
+```java
+public void send(String topic, String key, Person person) {
+    // Configuration des propriétés du producteur Kafka
+    Properties props = new Properties();
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSchemaSerializer.class.getName());
 
-/**
- * Producteur Kafka configuré pour envoyer des objets Person en JSON.
- */
-public class KafkaProducerServicePerson {
-    // Classe responsable de l'envoi de messages Kafka contenant des objets de type Person.
+    // Création du producteur Kafka
+    try (Producer<String, Person> producer = new KafkaProducer<>(props)) {
+        // Création d'un enregistrement Kafka (message)
+        ProducerRecord<String, Person> record = new ProducerRecord<>(topic, key, person);
 
-    private final String bootstrapServers;
-    // Adresse des serveurs Kafka (bootstrap servers) utilisée pour se connecter au cluster Kafka.
+        // Envoi asynchrone du message
+        producer.send(record);
 
-    public KafkaProducerServicePerson(String bootstrapServers) {
-        this.bootstrapServers = bootstrapServers;
-        // Constructeur qui initialise l'adresse des serveurs Kafka.
-    }
-
-    public void send(String topic, String key, Person person) {
-        // Méthode pour envoyer un objet Person dans un topic Kafka donné avec une clé spécifiée.
-
-        Properties props = new Properties();
-        // Création d'un objet Properties pour configurer le producteur Kafka.
-
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        // Configuration de l'adresse des serveurs Kafka (bootstrap servers).
-
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        // Configuration du sérialiseur pour les clés (ici, les clés sont des chaînes de caractères).
-
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSchemaSerializer.class.getName());
-        // Configuration du sérialiseur pour les valeurs (ici, les valeurs sont des objets Person sérialisés en JSON).
-
-        try (Producer<String, Person> producer = new KafkaProducer<>(props)) {
-            // Création d'un producteur Kafka avec les propriétés configurées.
-            // Le bloc try-with-resources garantit que le producteur sera fermé automatiquement.
-
-            ProducerRecord<String, Person> record = new ProducerRecord<>(topic, key, person);
-            // Création d'un enregistrement Kafka (message) avec le topic, la clé et l'objet Person spécifiés.
-
-            producer.send(record);
-            // Envoi asynchrone du message au cluster Kafka.
-
-            producer.flush();
-            // Vidage des messages en attente pour s'assurer que le message est bien envoyé avant de fermer le producteur.
-        }
-        // Le producteur Kafka est automatiquement fermé à la fin du bloc try-with-resources.
+        // Vidage des messages en attente
+        producer.flush();
     }
 }
+
 ```
 
 > 🟨 Note : on utilise `KafkaJsonSchemaSerializer` pour la sérialisation de l'objet `Person`.
@@ -180,65 +174,50 @@ public class KafkaProducerServicePerson {
 
 ## Test d’intégration avec Awaitility
 
+Voici un exemple de test d'intégration complet pour valider l'envoi et la réception d'un objet `Person` dans Kafka.
+
+
 📄 Fichier : 
 ```bash
 src/test/java/com/example/kafka/KafkaIntegrationTestPerson.java
 ```
 
 ```java
-package com.example.kafka.service;
+@Test
+void testKafkaProducerWithPerson() {
+    // Étape 1 : Configuration du producteur
+    KafkaProducerServicePerson producer = new KafkaProducerServicePerson(kafka.getBootstrapServers());
+    Person person = new Person("Alice", 30);
+    producer.send("test-topic", "key1", person);
 
-import com.example.kafka.model.Person;
-import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.common.serialization.StringSerializer;
-import io.confluent.kafka.serializers.json.KafkaJsonSchemaSerializer;
+    // Étape 2 : Configuration du consommateur
+    Properties props = new Properties();
+    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka.getBootstrapServers());
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-group");
+    props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
-import java.util.Properties;
+    Consumer<String, String> consumer = new KafkaConsumer<>(props);
+    consumer.subscribe(Collections.singletonList("test-topic"));
 
-/**
- * Producteur Kafka configuré pour envoyer des objets Person en JSON.
- */
-public class KafkaProducerServicePerson {
-    // Classe responsable de l'envoi de messages Kafka contenant des objets de type Person.
+    // Étape 3 : Validation des messages reçus
+    Awaitility.await()
+        .atMost(10, TimeUnit.SECONDS)
+        .untilAsserted(() -> {
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
+            assertFalse(records.isEmpty(), "Aucun message reçu");
 
-    private final String bootstrapServers;
-    // Adresse des serveurs Kafka (bootstrap servers) utilisée pour se connecter au cluster Kafka.
+            for (ConsumerRecord<String, String> record : records) {
+                ObjectMapper mapper = new ObjectMapper();
+                Person received = mapper.readValue(record.value(), Person.class);
 
-    public KafkaProducerServicePerson(String bootstrapServers) {
-        this.bootstrapServers = bootstrapServers;
-        // Constructeur qui initialise l'adresse des serveurs Kafka.
-    }
+                assertEquals(person.getName(), received.getName());
+                assertEquals(person.getAge(), received.getAge());
+            }
+        });
 
-    public void send(String topic, String key, Person person) {
-        // Méthode pour envoyer un objet Person dans un topic Kafka donné avec une clé spécifiée.
-
-        Properties props = new Properties();
-        // Création d'un objet Properties pour configurer le producteur Kafka.
-
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        // Configuration de l'adresse des serveurs Kafka (bootstrap servers).
-
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        // Configuration du sérialiseur pour les clés (ici, les clés sont des chaînes de caractères).
-
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSchemaSerializer.class.getName());
-        // Configuration du sérialiseur pour les valeurs (ici, les valeurs sont des objets Person sérialisés en JSON).
-
-        try (Producer<String, Person> producer = new KafkaProducer<>(props)) {
-            // Création d'un producteur Kafka avec les propriétés configurées.
-            // Le bloc try-with-resources garantit que le producteur sera fermé automatiquement.
-
-            ProducerRecord<String, Person> record = new ProducerRecord<>(topic, key, person);
-            // Création d'un enregistrement Kafka (message) avec le topic, la clé et l'objet Person spécifiés.
-
-            producer.send(record);
-            // Envoi asynchrone du message au cluster Kafka.
-
-            producer.flush();
-            // Vidage des messages en attente pour s'assurer que le message est bien envoyé avant de fermer le producteur.
-        }
-        // Le producteur Kafka est automatiquement fermé à la fin du bloc try-with-resources.
-    }
+    consumer.close();
 }
 ```
 

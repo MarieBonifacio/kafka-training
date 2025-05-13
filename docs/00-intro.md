@@ -5,46 +5,46 @@ title: Introduction
 
 # 🎓 Formation Kafka + Testcontainers (Java + Maven)
 
-Bienvenue dans cette formation interne, progressive et orientée pratique, pour apprendre à écrire des **tests automatisés Kafka** avec **JUnit 5**, **Testcontainers**, et **Maven**.
+Bienvenue dans cette formation pratique pour apprendre à automatiser des tests Kafka avec Java, Maven, et Testcontainers.
 
 ---
 
-## 🧠 Objectifs
+# 🎓 Formation Kafka + Testcontainers (Java + Maven)
 
-- Maîtriser les bases de Kafka en local sans cluster complexe
-- Utiliser Testcontainers pour tester Kafka sans dépendance externe
-- Écrire des tests fiables et lisibles avec Awaitility
-- Manipuler des messages complexes (ex : JSON) dans Kafka
-- Créer une structure de projet claire et réutilisable
-- Documenter une formation utile pour tout développeur ou QE débutant
+Bienvenue dans cette formation pratique pour apprendre à automatiser des tests Kafka avec Java, Maven, et Testcontainers.
 
 ---
 
-## 🧰 Prérequis techniques
+## 🧠 Pourquoi cette formation ?
 
-- **Java 17+**
-- **Docker Desktop** installé et lancé (Testcontainers l’utilise)
-- **Maven** (et non Gradle !)
-- **IDE : VSCode** (ou autre)
-- Extension **Java Test Runner** recommandée dans VSCode
+Kafka est un outil clé dans les architectures modernes pour gérer des flux de données en temps réel. Cette formation vous permettra de :
+- Comprendre les bases de Kafka.
+- Automatiser des tests Kafka sans dépendre d'un cluster réel.
+- Manipuler des données complexes (JSON) dans Kafka.
+- Créer des tests fiables et réutilisables.
+
+---
+
+## 🗺️ Aperçu du projet
+
+Voici un aperçu du flux que nous allons tester :
+
+```plaintext
++-------------+       +----------------+       +----------------+
+| KafkaProducer| ---> | Kafka (Topic)  | ---> | KafkaConsumer  |
++-------------+       +----------------+       +----------------+
+
+```
+- **KafkaProducer** : Envoie des messages à un topic Kafka.
+- **Kafka (Topic)** : Stocke les messages.
+- **KafkaConsumer** : Lit les messages du topic.
 
 ---
 
 ## 📁 Structure pédagogique
 
-La formation est découpée en chapitres progressifs. Chacun contient :
-- Des explications pédagogiques
-- Des extraits de code Maven/Java
-- Des commentaires utiles pour un débutant
-- Des exercices facultatifs
+Chaque chapitre contient :
 
----
-
-## 🚀 Projet fil rouge
-
-Nous allons tester un système Kafka simple, composé :
-- D’un producteur Java qui envoie un message dans un topic
-- D’un consommateur Java qui lit ce message
-- D’un test d’intégration utilisant un conteneur Kafka temporaire
-
-Le tout sera documenté et versionné pour être réutilisable facilement.
+- Des explications claires et progressives.
+- Des extraits de code commentés.
+- Des exercices pratiques pour renforcer vos compétences.
