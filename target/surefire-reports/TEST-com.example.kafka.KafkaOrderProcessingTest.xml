@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.kafka.KafkaDeserializationResilienceTest" time="19.445" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.kafka.KafkaOrderProcessingTest" time="14.381" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\MarieBONIFACIO\AppData\Local\Temp\surefire16946793613503264862\surefirebooter-20250602154348177_3.jar C:\Users\MarieBONIFACIO\AppData\Local\Temp\surefire16946793613503264862 2025-06-02T15-43-47_725-jvmRun1 surefire-20250602154348177_1tmp surefire_0-20250602154348177_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\MarieBONIFACIO\AppData\Local\Temp\surefire16858153221166103831\surefirebooter-20250602154422331_3.jar C:\Users\MarieBONIFACIO\AppData\Local\Temp\surefire16858153221166103831 2025-06-02T15-44-22_058-jvmRun1 surefire-20250602154422331_1tmp surefire_0-20250602154422331_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="KafkaDeserializationResilienceTest#testJsonDeserializationError"/>
+    <property name="test" value="KafkaOrderProcessingTest"/>
     <property name="surefire.test.class.path" value="C:\Dev\kafka-training\target\test-classes;C:\Dev\kafka-training\target\classes;C:\Users\MarieBONIFACIO\.m2\repository\org\apache\kafka\kafka-clients\3.4.0\kafka-clients-3.4.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\github\luben\zstd-jni\1.5.2-1\zstd-jni-1.5.2-1.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\lz4\lz4-java\1.8.0\lz4-java-1.8.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\xerial\snappy\snappy-java\1.1.8.4\snappy-java-1.1.8.4.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\testcontainers\junit-jupiter\1.18.3\junit-jupiter-1.18.3.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\testcontainers\testcontainers\1.18.3\testcontainers-1.18.3.jar;C:\Users\MarieBONIFACIO\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\apache\commons\commons-compress\1.23.0\commons-compress-1.23.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\rnorth\duct-tape\duct-tape\1.0.8\duct-tape-1.0.8.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\annotations\17.0.0\annotations-17.0.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\github\docker-java\docker-java-api\3.3.0\docker-java-api-3.3.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\github\docker-java\docker-java-transport-zerodep\3.3.0\docker-java-transport-zerodep-3.3.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\github\docker-java\docker-java-transport\3.3.0\docker-java-transport-3.3.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\net\java\dev\jna\jna\5.12.1\jna-5.12.1.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\awaitility\awaitility\4.2.0\awaitility-4.2.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\hamcrest\hamcrest\2.1\hamcrest-2.1.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\testcontainers\kafka\1.19.0\kafka-1.19.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.2\jackson-databind-2.15.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.2\jackson-annotations-2.15.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.2\jackson-core-2.15.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\confluent\kafka-json-schema-serializer\7.5.0\kafka-json-schema-serializer-7.5.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\confluent\kafka-json-schema-provider\7.5.0\kafka-json-schema-provider-7.5.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\github\erosb\everit-json-schema\1.14.2\everit-json-schema-1.14.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\json\json\20230227\json-20230227.jar;C:\Users\MarieBONIFACIO\.m2\repository\commons-validator\commons-validator\1.7\commons-validator-1.7.jar;C:\Users\MarieBONIFACIO\.m2\repository\commons-digester\commons-digester\2.1\commons-digester-2.1.jar;C:\Users\MarieBONIFACIO\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\damnhandy\handy-uri-templates\2.1.8\handy-uri-templates-2.1.8.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\google\re2j\re2j\1.6\re2j-1.6.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-guava\2.14.2\jackson-datatype-guava-2.14.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.14.2\jackson-datatype-jdk8-2.14.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-joda\2.14.2\jackson-datatype-joda-2.14.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\joda-time\joda-time\2.10.8\joda-time-2.10.8.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.14.2\jackson-datatype-jsr310-2.14.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.14.2\jackson-module-parameter-names-2.14.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\kjetland\mbknor-jackson-jsonschema_2.13\1.0.39\mbknor-jackson-jsonschema_2.13-1.0.39.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\scala-lang\scala-library\2.13.1\scala-library-2.13.1.jar;C:\Users\MarieBONIFACIO\.m2\repository\javax\validation\validation-api\2.0.1.Final\validation-api-2.0.1.Final.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\github\classgraph\classgraph\4.8.21\classgraph-4.8.21.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.6.0\kotlin-stdlib-1.6.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.6.0\kotlin-stdlib-common-1.6.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\kotlin\kotlin-scripting-jvm\1.6.0\kotlin-scripting-jvm-1.6.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\kotlin\kotlin-script-runtime\1.6.0\kotlin-script-runtime-1.6.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\kotlin\kotlin-scripting-common\1.6.0\kotlin-scripting-common-1.6.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\kotlin\kotlin-scripting-compiler-embeddable\1.6.0\kotlin-scripting-compiler-embeddable-1.6.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\jetbrains\kotlin\kotlin-scripting-compiler-impl-embeddable\1.6.0\kotlin-scripting-compiler-impl-embeddable-1.6.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\confluent\kafka-schema-serializer\7.5.0\kafka-schema-serializer-7.5.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\confluent\kafka-json-serializer\7.5.0\kafka-json-serializer-7.5.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\confluent\common-config\7.5.0\common-config-7.5.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\confluent\kafka-schema-registry-client\7.5.0\kafka-schema-registry-client-7.5.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\yaml\snakeyaml\2.0\snakeyaml-2.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\apache\avro\avro\1.11.0\avro-1.11.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\swagger\core\v3\swagger-annotations\2.1.10\swagger-annotations-2.1.10.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\google\guava\guava\32.0.1-jre\guava-32.0.1-jre.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\google\guava\failureaccess\1.0.1\failureaccess-1.0.1.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\checkerframework\checker-qual\3.33.0\checker-qual-3.33.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\google\errorprone\error_prone_annotations\2.18.0\error_prone_annotations-2.18.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\com\google\j2objc\j2objc-annotations\2.8\j2objc-annotations-2.8.jar;C:\Users\MarieBONIFACIO\.m2\repository\io\confluent\common-utils\7.5.0\common-utils-7.5.0.jar;C:\Users\MarieBONIFACIO\.m2\repository\org\slf4j\slf4j-simple\1.7.36\slf4j-simple-1.7.36.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\MarieBONIFACIO"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\MarieBONIFACIO\AppData\Local\Temp\surefire16946793613503264862\surefirebooter-20250602154348177_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\MarieBONIFACIO\AppData\Local\Temp\surefire16858153221166103831\surefirebooter-20250602154422331_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.7+6-LTS"/>
@@ -60,7 +60,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testJsonDeserializationError" classname="com.example.kafka.KafkaDeserializationResilienceTest" time="4.701">
+  <testcase name="testOrderProcessingFlow" classname="com.example.kafka.KafkaOrderProcessingTest" time="14.107">
     <system-err><![CDATA[[main] INFO org.testcontainers.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy - Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
@@ -71,21 +71,20 @@
   Operating System: Docker Desktop
   Total Memory: 7740 MB
 [main] INFO tc.testcontainers/ryuk:0.5.1 - Creating container for image: testcontainers/ryuk:0.5.1
-[main] INFO tc.testcontainers/ryuk:0.5.1 - Container testcontainers/ryuk:0.5.1 is starting: 5c35be6bc9c5125c5d77a05c9d90da4290eddbb60f5277a49dcf47504a7902d1
-[main] INFO tc.testcontainers/ryuk:0.5.1 - Container testcontainers/ryuk:0.5.1 started in PT2.6894039S
+[main] INFO tc.testcontainers/ryuk:0.5.1 - Container testcontainers/ryuk:0.5.1 is starting: 2c301bdc367263d3fd8fe1662465d0f8961f496512fad6cbacd4e1df5e0f00ba
+[main] INFO tc.testcontainers/ryuk:0.5.1 - Container testcontainers/ryuk:0.5.1 started in PT1.1528733S
 [main] INFO org.testcontainers.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
 [main] INFO org.testcontainers.DockerClientFactory - Checking the system...
 [main] INFO org.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
 [main] INFO tc.confluentinc/cp-kafka:7.2.1 - Creating container for image: confluentinc/cp-kafka:7.2.1
-[main] INFO tc.confluentinc/cp-kafka:7.2.1 - Container confluentinc/cp-kafka:7.2.1 is starting: aba335d84bc8a4e5bb4df0a10ba90786db438453a9b8d07264349d1fe8c9c97c
-[main] INFO tc.confluentinc/cp-kafka:7.2.1 - Container confluentinc/cp-kafka:7.2.1 started in PT9.7484043S
-[main] INFO com.example.kafka.KafkaDeserializationResilienceTest - ⏩ Envoi vers Kafka : topic=test-json-person-errorerreur-deserialization, key=key-person-errorerreur-deserialization, json=    { "name": "Hugo", "age": "trente", "address": { "street": "rue X", "city": "Lille", "zip": "59000" } }
-
+[main] INFO tc.confluentinc/cp-kafka:7.2.1 - Container confluentinc/cp-kafka:7.2.1 is starting: c478ad6feee93fc4a8be4c50ab947a27c44a1fb6346a9b78a4646d5bc2b01efc
+[main] INFO tc.confluentinc/cp-kafka:7.2.1 - Container confluentinc/cp-kafka:7.2.1 started in PT7.9162494S
+[main] INFO com.example.kafka.KafkaOrderProcessingTest - 🔄 Envoi initial de l'Order : {"id":"ORDER-001","amount":150.0,"status":"NEW"}
 [main] INFO org.apache.kafka.clients.producer.ProducerConfig - ProducerConfig values: 
 	acks = -1
 	auto.include.jmx.reporter = true
 	batch.size = 16384
-	bootstrap.servers = [PLAINTEXT://localhost:59939]
+	bootstrap.servers = [PLAINTEXT://localhost:59956]
 	buffer.memory = 33554432
 	client.dns.lookup = use_all_dns_ips
 	client.id = producer-1
@@ -174,15 +173,14 @@
 [main] INFO org.apache.kafka.clients.producer.KafkaProducer - [Producer clientId=producer-1] Instantiated an idempotent producer.
 [main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka version: 3.4.0
 [main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 2e1947d240607d53
-[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1748871843752
-[main] INFO com.example.kafka.KafkaDeserializationResilienceTest - 📝 Envoi d'un message invalide sur le topic : test-json-person-errorerreur-deserialization avec key=key-person-errorerreur-deserialization
-[kafka-producer-network-thread | producer-1] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Error while fetching metadata with correlation id 1 : {test-json-person-errorerreur-deserialization=LEADER_NOT_AVAILABLE}
-[kafka-producer-network-thread | producer-1] INFO org.apache.kafka.clients.Metadata - [Producer clientId=producer-1] Cluster ID: MZGtjjYYSgWl39wDkbTIcw
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1748871874445
+[kafka-producer-network-thread | producer-1] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Error while fetching metadata with correlation id 1 : {order-input=LEADER_NOT_AVAILABLE}
+[kafka-producer-network-thread | producer-1] INFO org.apache.kafka.clients.Metadata - [Producer clientId=producer-1] Cluster ID: 69IDOqMNR32thgKImVHkiQ
 [kafka-producer-network-thread | producer-1] INFO org.apache.kafka.clients.producer.internals.TransactionManager - [Producer clientId=producer-1] ProducerId set to 0 with epoch 0
-[kafka-producer-network-thread | producer-1] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Error while fetching metadata with correlation id 4 : {test-json-person-errorerreur-deserialization=LEADER_NOT_AVAILABLE}
-[kafka-producer-network-thread | producer-1] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Error while fetching metadata with correlation id 5 : {test-json-person-errorerreur-deserialization=LEADER_NOT_AVAILABLE}
-[kafka-producer-network-thread | producer-1] INFO org.apache.kafka.clients.Metadata - [Producer clientId=producer-1] Resetting the last seen epoch of partition test-json-person-errorerreur-deserialization-0 to 0 since the associated topicId changed from null to aqqOLy5tQCKH2cmv-xLhBg
-[kafka-producer-network-thread | producer-1] INFO com.example.kafka.KafkaDeserializationResilienceTest - ✅ Message envoyé sur le topic=test-json-person-errorerreur-deserialization avec offset=0 - partition=0
+[kafka-producer-network-thread | producer-1] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Error while fetching metadata with correlation id 4 : {order-input=LEADER_NOT_AVAILABLE}
+[kafka-producer-network-thread | producer-1] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-1] Error while fetching metadata with correlation id 5 : {order-input=LEADER_NOT_AVAILABLE}
+[kafka-producer-network-thread | producer-1] INFO org.apache.kafka.clients.Metadata - [Producer clientId=producer-1] Resetting the last seen epoch of partition order-input-0 to 0 since the associated topicId changed from null to jLKj9P-ZQEOQQ2L6do57Lw
+[main] INFO com.example.kafka.KafkaOrderProcessingTest - ✅ Order envoyé dans le topic 'order-input'
 [main] INFO org.apache.kafka.clients.producer.KafkaProducer - [Producer clientId=producer-1] Closing the Kafka producer with timeoutMillis = 9223372036854775807 ms.
 [main] INFO org.apache.kafka.common.metrics.Metrics - Metrics scheduler closed
 [main] INFO org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
@@ -193,10 +191,10 @@
 	auto.commit.interval.ms = 5000
 	auto.include.jmx.reporter = true
 	auto.offset.reset = earliest
-	bootstrap.servers = [PLAINTEXT://localhost:59939]
+	bootstrap.servers = [PLAINTEXT://localhost:59956]
 	check.crcs = true
 	client.dns.lookup = use_all_dns_ips
-	client.id = consumer-group-deserialization-error-1
+	client.id = consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1
 	client.rack = 
 	connections.max.idle.ms = 540000
 	default.api.timeout.ms = 60000
@@ -205,7 +203,7 @@
 	fetch.max.bytes = 52428800
 	fetch.max.wait.ms = 500
 	fetch.min.bytes = 1
-	group.id = group-deserialization-error
+	group.id = order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2
 	group.instance.id = null
 	heartbeat.interval.ms = 3000
 	interceptor.classes = []
@@ -284,33 +282,256 @@
 
 [main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka version: 3.4.0
 [main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 2e1947d240607d53
-[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1748871845964
-[main] INFO org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Subscribed to topic(s): test-json-person-errorerreur-deserialization
-[awaitility-thread] INFO org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Resetting the last seen epoch of partition test-json-person-errorerreur-deserialization-0 to 0 since the associated topicId changed from null to aqqOLy5tQCKH2cmv-xLhBg
-[awaitility-thread] INFO org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Cluster ID: MZGtjjYYSgWl39wDkbTIcw
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Discovered group coordinator localhost:59939 (id: 2147483646 rack: null)
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] (Re-)joining group
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Request joining group due to: need to re-join with the given member-id: consumer-group-deserialization-error-1-96eb0709-1570-4a33-849f-51d403a0fb0d
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Request joining group due to: rebalance failed due to 'The group member needs to have a valid member id before actually entering a consumer group.' (MemberIdRequiredException)
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] (Re-)joining group
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Successfully joined group with generation Generation{generationId=1, memberId='consumer-group-deserialization-error-1-96eb0709-1570-4a33-849f-51d403a0fb0d', protocol='range'}
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Finished assignment for group at generation 1: {consumer-group-deserialization-error-1-96eb0709-1570-4a33-849f-51d403a0fb0d=Assignment(partitions=[test-json-person-errorerreur-deserialization-0])}
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Successfully synced group in generation Generation{generationId=1, memberId='consumer-group-deserialization-error-1-96eb0709-1570-4a33-849f-51d403a0fb0d', protocol='range'}
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Notifying assignor about the new Assignment(partitions=[test-json-person-errorerreur-deserialization-0])
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Adding newly assigned partitions: test-json-person-errorerreur-deserialization-0
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Found no committed offset for partition test-json-person-errorerreur-deserialization-0
-[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.SubscriptionState - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Resetting offset for partition test-json-person-errorerreur-deserialization-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:59939 (id: 1 rack: null)], epoch=0}}.
-[awaitility-thread] WARN com.example.kafka.KafkaDeserializationResilienceTest - ✅ Erreur de désérialisation capturée (key=key-person-errorerreur-deserialization) : Cannot deserialize value of type `int` from String "trente": not a valid `int` value
- at [Source: (String)"    { "name": "Hugo", "age": "trente", "address": { "street": "rue X", "city": "Lille", "zip": "59000" } }
-"; line: 1, column: 30] (through reference chain: com.example.kafka.model.Person["age"])
-[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Revoke previously assigned partitions test-json-person-errorerreur-deserialization-0
-[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Member consumer-group-deserialization-error-1-96eb0709-1570-4a33-849f-51d403a0fb0d sending LeaveGroup request to coordinator localhost:59939 (id: 2147483646 rack: null) due to the consumer is being closed
-[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Resetting generation and member id due to: consumer pro-actively leaving the group
-[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-group-deserialization-error-1, groupId=group-deserialization-error] Request joining group due to: consumer pro-actively leaving the group
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1748871875877
+[main] INFO org.apache.kafka.clients.producer.ProducerConfig - ProducerConfig values: 
+	acks = -1
+	auto.include.jmx.reporter = true
+	batch.size = 16384
+	bootstrap.servers = [PLAINTEXT://localhost:59956]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = producer-2
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+[main] INFO org.apache.kafka.clients.producer.KafkaProducer - [Producer clientId=producer-2] Instantiated an idempotent producer.
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka version: 3.4.0
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 2e1947d240607d53
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1748871875889
+[main] INFO org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Subscribed to topic(s): order-input
+[kafka-producer-network-thread | producer-2] INFO org.apache.kafka.clients.Metadata - [Producer clientId=producer-2] Cluster ID: 69IDOqMNR32thgKImVHkiQ
+[kafka-producer-network-thread | producer-2] INFO org.apache.kafka.clients.producer.internals.TransactionManager - [Producer clientId=producer-2] ProducerId set to 1 with epoch 0
+[awaitility-thread] INFO org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Resetting the last seen epoch of partition order-input-0 to 0 since the associated topicId changed from null to jLKj9P-ZQEOQQ2L6do57Lw
+[awaitility-thread] INFO org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Cluster ID: 69IDOqMNR32thgKImVHkiQ
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Discovered group coordinator localhost:59956 (id: 2147483646 rack: null)
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] (Re-)joining group
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Request joining group due to: need to re-join with the given member-id: consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1-9e88d156-1c6b-42bd-b556-043c79cf104b
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Request joining group due to: rebalance failed due to 'The group member needs to have a valid member id before actually entering a consumer group.' (MemberIdRequiredException)
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] (Re-)joining group
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Successfully joined group with generation Generation{generationId=1, memberId='consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1-9e88d156-1c6b-42bd-b556-043c79cf104b', protocol='range'}
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Finished assignment for group at generation 1: {consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1-9e88d156-1c6b-42bd-b556-043c79cf104b=Assignment(partitions=[order-input-0])}
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Successfully synced group in generation Generation{generationId=1, memberId='consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1-9e88d156-1c6b-42bd-b556-043c79cf104b', protocol='range'}
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Notifying assignor about the new Assignment(partitions=[order-input-0])
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Adding newly assigned partitions: order-input-0
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Found no committed offset for partition order-input-0
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.SubscriptionState - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Resetting offset for partition order-input-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:59956 (id: 1 rack: null)], epoch=0}}.
+[awaitility-thread] INFO com.example.kafka.KafkaOrderProcessingTest - 📥 Message reçu : Order{id='ORDER-001', amount=150,00, status='NEW'}
+[kafka-producer-network-thread | producer-2] WARN org.apache.kafka.clients.NetworkClient - [Producer clientId=producer-2] Error while fetching metadata with correlation id 4 : {order-processed=LEADER_NOT_AVAILABLE}
+[kafka-producer-network-thread | producer-2] INFO org.apache.kafka.clients.Metadata - [Producer clientId=producer-2] Resetting the last seen epoch of partition order-processed-0 to 0 since the associated topicId changed from null to W3Jp0AKbTyGms6xy32nySQ
+[awaitility-thread] INFO com.example.kafka.KafkaOrderProcessingTest - ✅ Order modifié envoyé dans le topic 'order-processed'
+[main] INFO org.apache.kafka.clients.producer.KafkaProducer - [Producer clientId=producer-2] Closing the Kafka producer with timeoutMillis = 9223372036854775807 ms.
 [main] INFO org.apache.kafka.common.metrics.Metrics - Metrics scheduler closed
 [main] INFO org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
 [main] INFO org.apache.kafka.common.metrics.Metrics - Metrics reporters closed
-[main] INFO org.apache.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-group-deserialization-error-1 unregistered
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - App info kafka.producer for producer-2 unregistered
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Revoke previously assigned partitions order-input-0
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Member consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1-9e88d156-1c6b-42bd-b556-043c79cf104b sending LeaveGroup request to coordinator localhost:59956 (id: 2147483646 rack: null) due to the consumer is being closed
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Resetting generation and member id due to: consumer pro-actively leaving the group
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Request joining group due to: consumer pro-actively leaving the group
+[main] INFO org.apache.kafka.common.metrics.Metrics - Metrics scheduler closed
+[main] INFO org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[main] INFO org.apache.kafka.common.metrics.Metrics - Metrics reporters closed
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-1 unregistered
+[main] INFO org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [PLAINTEXT://localhost:59956]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka version: 3.4.0
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 2e1947d240607d53
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1748871876670
+[main] INFO org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Subscribed to topic(s): order-processed
+[awaitility-thread] INFO org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Resetting the last seen epoch of partition order-processed-0 to 0 since the associated topicId changed from null to W3Jp0AKbTyGms6xy32nySQ
+[awaitility-thread] INFO org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Cluster ID: 69IDOqMNR32thgKImVHkiQ
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Discovered group coordinator localhost:59956 (id: 2147483646 rack: null)
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] (Re-)joining group
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Request joining group due to: need to re-join with the given member-id: consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2-7d06c891-10b4-46bb-b465-65850691ccb1
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Request joining group due to: rebalance failed due to 'The group member needs to have a valid member id before actually entering a consumer group.' (MemberIdRequiredException)
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] (Re-)joining group
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Successfully joined group with generation Generation{generationId=3, memberId='consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2-7d06c891-10b4-46bb-b465-65850691ccb1', protocol='range'}
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Finished assignment for group at generation 3: {consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2-7d06c891-10b4-46bb-b465-65850691ccb1=Assignment(partitions=[order-processed-0])}
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Successfully synced group in generation Generation{generationId=3, memberId='consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2-7d06c891-10b4-46bb-b465-65850691ccb1', protocol='range'}
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Notifying assignor about the new Assignment(partitions=[order-processed-0])
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Adding newly assigned partitions: order-processed-0
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Found no committed offset for partition order-processed-0
+[awaitility-thread] INFO org.apache.kafka.clients.consumer.internals.SubscriptionState - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Resetting offset for partition order-processed-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:59956 (id: 1 rack: null)], epoch=0}}.
+[awaitility-thread] INFO com.example.kafka.KafkaOrderProcessingTest - 🔎 Message final reçu : Order{id='ORDER-001', amount=150,00, status='ALERT'}
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Revoke previously assigned partitions order-processed-0
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Member consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2-7d06c891-10b4-46bb-b465-65850691ccb1 sending LeaveGroup request to coordinator localhost:59956 (id: 2147483646 rack: null) due to the consumer is being closed
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Resetting generation and member id due to: consumer pro-actively leaving the group
+[main] INFO org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2, groupId=order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2] Request joining group due to: consumer pro-actively leaving the group
+[main] INFO org.apache.kafka.common.metrics.Metrics - Metrics scheduler closed
+[main] INFO org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[main] INFO org.apache.kafka.common.metrics.Metrics - Metrics reporters closed
+[main] INFO org.apache.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-order-processing-group-a7f62913-85df-4e0b-81d8-c4d085112fb2-2 unregistered
 ]]></system-err>
   </testcase>
 </testsuite>
