@@ -9,6 +9,23 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <redirectTestOutputToFile>false</redirectTestOutputToFile>
+          <useSystemClassLoader>true</useSystemClassLoader>
+          <forkCount>1</forkCount>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
   <dependencies>
     <!-- Kafka -->
     <dependency>
@@ -25,7 +42,7 @@
       <scope>test</scope>
     </dependency>
 
-    
+    <!-- JUnit 5 Vintage Engine --> 
     <dependency>
         <groupId>org.testcontainers</groupId>
         <artifactId>junit-jupiter</artifactId>
@@ -62,6 +79,14 @@
       <artifactId>kafka-json-schema-serializer</artifactId>
       <version>7.5.0</version>
     </dependency>
+
+    <!-- SLF4J -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.36</version>
+    </dependency>
+
   </dependencies>
   
   <repositories>

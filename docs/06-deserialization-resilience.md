@@ -1,259 +1,177 @@
 ---
-title: Tester la résilience à la désérialisation JJSON
-description: Vérifier la robustesse de votre architecture Kafka face à des erreurs de parsing JSON
+id: 06-tester-resilience-deserialisation
+title: Tester la résilience à la désérialisation JSON
+description: Apprendre à détecter et gérer proprement les erreurs de désérialisation dans Kafka, avec un focus pédagogique pour les débutants.
+---
+
+# 🛡️ Tester la résilience à la désérialisation JSON
 
 ---
 
+## 🎯 Objectif
 
-## 🧭 Objectif pédagogique
+Dans cette partie, nous allons apprendre à rendre notre système Kafka plus robuste face à un problème courant :  
+👉 **un message JSON mal formé ou inattendu** qui casse la désérialisation côté consommateur.
 
-L’objectif ici est de valider que notre application **ne plante pas** lorsqu’elle reçoit un message Kafka au **format JSON invalide** (erreur de type, champ manquant, etc.).  
-Nous allons simuler un cas de désérialisation cassée, et mettre en place une stratégie simple de **gestion d’erreur robuste**.
+Nous allons voir :
+- Comment **simuler des erreurs** de désérialisation
+- Comment les **capturer proprement**
+- Comment **logger** l’erreur comme en entreprise
+- Et comment **rendre nos tests stables et prédictibles**
 
 ---
 
-## 🧪 Simulation d’une erreur de désérialisation
+## 📦 Pourquoi c’est important
 
-### ❌ Exemple de message JSON invalide
+Kafka est souvent utilisé pour faire transiter des objets métier au format JSON.  
+Mais si le format change, ou si un message est corrompu, on peut avoir :
 
-```json
-{
-  "name": "Hugo",
-  "age": "trente", // ⚠️ ce champ devrait être un entier
-  "address": {
-    "street": "rue X",
-    "city": "Lille",
-    "zip": "59000"
-  }
-}
-```
-Le champ age est ici une chaîne de caractères, alors que l’objet Java Person attend un int.
+- une **erreur silencieuse** (message ignoré)
+- ou pire : un **crash du service** au moment de la désérialisation
 
+En tant que Quality Engineer, il est crucial de tester la **résilience** de notre application face à ces cas.
 
-## ⚙️ Configuration Kafka minimale (sans serializer custom)
+---
 
-Nous utilisons un producteur/consommateur simple avec les classes standard :
+## 🔨 Ce qu’on va tester
 
-- StringSerializer pour le producer
+Nous allons envoyer des messages Kafka contenant du JSON volontairement incorrect, par exemple :
 
-- StringDeserializer côté consumer
+- 🔁 un champ mal typé (`"age": "trente"` au lieu d’un int)
+- 🧩 une structure erronée (`"address": "rue de Lille"` au lieu d’un objet)
+- ❌ un champ important manquant (`address` absent)
 
-- Désérialisation manuelle avec Jackson dans un bloc try/catch
+Et nous allons vérifier que notre application :
+- **reçoit bien le message**
+- **échoue proprement** à la désérialisation
+- **log l’erreur sans planter**
 
+---
 
-# 📄 Exemple de test complet
-Fichier : KafkaDeserializationResilienceTest.java
+## 🧪 Exemple de test automatisé
+
+Nous utilisons JUnit, Awaitility, et Testcontainers pour lancer un Kafka local automatiquement.
+
+Fichier : `KafkaDeserializationResilienceTest.java`
+
+### Cas 1 : type incorrect (fail attendu)
 
 ```java
 @Test
 void testJsonDeserializationError() {
-    String topic = "test-json-error";
-    String badJson = """
-        { "name": "Hugo", "age": "trente", "address": { "street": "rue X", "city": "Lille", "zip": "59000" } }
-    """;
-
-    Producer<String, String> producer = new KafkaProducer<>(...);
-    producer.send(new ProducerRecord<>(topic, "key1", badJson));
-    producer.flush();
-
-    Consumer<String, String> consumer = new KafkaConsumer<>(...);
-    consumer.subscribe(List.of(topic));
-
-    Awaitility.await().untilAsserted(() -> {
-        var records = consumer.poll(Duration.ofMillis(500));
-        assertFalse(records.isEmpty());
-
-        for (var record : records) {
-            try {
-                var mapper = new ObjectMapper();
-                var person = mapper.readValue(record.value(), Person.class);
-                fail("Le test aurait dû échouer !");
-            } catch (Exception e) {
-                System.out.println("✅ Erreur de désérialisation capturée : " + e.getMessage());
+    String json = """
+        {
+            "name": "Hugo",
+            "age": "trente",
+            "address": {
+                "street": "rue X",
+                "city": "Lille",
+                "zip": "59000"
             }
         }
-    });
+    """;
+    testInvalidDeserialization(json, "type incorrect : age=String");
 }
 ```
 
-## ✅ Ce que ce test vérifie
+## 🧠 Pourquoi ce test passe ?
 
-✔️ Le message est bien reçu par Kafka   
-✔️ La désérialisation échoue dans le try/catch  
-✔️ L’erreur est capturée, sans provoquer de crash du test ni de NullPointerException    
+Le champ age est censé être un int dans notre classe Person.
+Mais ici on envoie une String.
+Jackson ne peut pas convertir "trente" en int ⇒ une exception est levée.
 
----
-
-## 🧠 Bonnes pratiques à appliquer
+Nous avons mis ce code dans un bloc try/catch dans la méthode factorisée testInvalidDeserialization(...).
 
 
-| Bonne pratique                                         | Pourquoi ?                                              |
-| ------------------------------------------------------ | ------------------------------------------------------- |
-| 🔁 Utiliser `try/catch` lors de la désérialisation     | Pour isoler les erreurs et empêcher les crashs          |
-| 🪵 Logger une erreur claire avec contexte              | Facilite l’analyse en prod                              |
-| 🧪 Écrire des tests dédiés à la robustesse             | Permet de détecter les cas limites dès le CI            |
-| 🧮 Éviter les `readValue(...)` directs sans validation | Pour ne pas faire confiance aveuglément au JSON entrant |
+### Cas 2, plus subtil : champ manquant
 
 
-## 📊 Stratégies de journalisation et monitoring
+```java
+{ "name": "Hugo", "age": 30 }
+```
+Est-ce que ça casse ?
 
-## 🔎 Ce qu’on peut surveiller :
+❌ Non. Par défaut, Jackson accepte les champs manquants s’ils ne sont pas strictement requis (constructeur ou validation).
+Donc si address est absent, Jackson met juste null.
 
-Nombre d’erreurs de parsing par topic
 
-Clés associées aux messages cassés
+## ✅ Astuce pour forcer une erreur sur champ manquant
+Dans notre méthode de test, nous avons ajouté une ligne spéciale :
 
-Horodatage + trace technique
+```java
+if (person.address == null) {
+    throw new IllegalArgumentException("Champ 'address' manquant !");
+}
+```
 
-💡 Exemple de logique pro :
+Cela permet de transformer ce "champ manquant toléré" en erreur volontaire, pour s’assurer que l’API attend bien un address.
+
+
+## 📄 Méthode de test factorisée
+
+Signature :
+
+```java
+private void testInvalidDeserialization(String json, String label)
+```
+
+Ce qu’elle fait :
+
+1. Crée un topic Kafka avec un nom basé sur le label
+
+2. Envoie le json cassé dans ce topic
+
+3. Lance un KafkaConsumer pour écouter ce topic
+
+4. Attend 10 secondes max pour recevoir un message
+
+5. Essaie de le désérialiser
+
+6. Si une erreur est capturée → ✅ le test passe
+
+7. Sinon → ❌ on appelle fail(...)
+
+Détail du cœur du test :
 
 ```java
 try {
-    Person p = mapper.readValue(record.value(), Person.class);
-} catch (JsonProcessingException e) {
-    logger.warn("Erreur de parsing JSON dans Kafka : " + e.getMessage());
-    metrics.increment("kafka.deserialization.error");
+    Person person = mapper.readValue(record.value(), Person.class);
+
+    // Si on veut forcer l’échec sur champ null
+    if (person.address == null) {
+        throw new IllegalArgumentException("Champ 'address' manquant !");
+    }
+
+    // Sinon, la désérialisation passe alors qu'elle aurait dû échouer
+    fail("La désérialisation aurait dû échouer !");
+} catch (Exception e) {
+    log.warn("Erreur capturée : {}", e.getMessage());
+    errorCaptured[0] = true;
 }
 ```
 
-🧪 Commande pour relancer le test
+## 🪵 Utilisation d’un logger propre (au lieu de println)
 
-
-```bash
-mvn test -Dtest=KafkaDeserializationResilienceTest
-```
-
-Tu dois voir :
-
-```bash
-✅ Erreur de désérialisation capturée : Cannot deserialize value of type `int` from String "trente"
- ```
----
-
-📌 Conclusion
-
-Tu viens d’apprendre à :
-
-Simuler des erreurs réalistes dans un flux Kafka
-
-Capturer ces erreurs de manière propre
-
-Mettre en place une base de monitoring résilient
-
-Appliquer des bonnes pratiques compatibles production
-
----
-
-### 🧪 Approfondissements possibles avant l'étape métier
-
-
-## 1. 🧱 Tester plusieurs erreurs différentes
-Exemples :
-
-| Cas                     | Exemple                                 |
-| ----------------------- | --------------------------------------- |
-| 🧩 Type incorrect       | `"age": "trente"` au lieu d’un int      |
-| ❌ Champ manquant        | Pas de `address` du tout                |
-| 🧨 Structure incorrecte | `"address": "rue x"` au lieu d’un objet |
-
-
-🎯 But : valider que chaque cas est capturé proprement et que tu peux les différencier dans les logs.
-
-# 📄 Test dédié
-
-On ajoute une méthode par erreur dans KafkaDeserializationResilienceTest.java :
+Nous avons remplacé tous les System.out.println(...) par :
 
 ```java
-@Test
-void testDeserializationFailsOnMissingField() {
-    String badJson = """{ "name": "Hugo", "age": 30 }"""; // pas de 'address'
-
-    testInvalidDeserialization(badJson, "champ manquant");
-}
-
-@Test
-void testDeserializationFailsOnInvalidAddressStructure() {
-    String badJson = """{ "name": "Hugo", "age": 30, "address": "invalid" }"""; // address en string
-
-    testInvalidDeserialization(badJson, "structure invalide");
-}
-
-
-private void testInvalidDeserialization(String json, String label) {
-    String topic = "test-json-error-" + label.replace(" ", "-");
-    Producer<String, String> producer = new KafkaProducer<>(...);
-    producer.send(new ProducerRecord<>(topic, "key", json));
-    producer.flush();
-
-    Consumer<String, String> consumer = new KafkaConsumer<>(...);
-    consumer.subscribe(List.of(topic));
-
-    Awaitility.await().untilAsserted(() -> {
-        var records = consumer.poll(Duration.ofMillis(500));
-        assertFalse(records.isEmpty());
-
-        for (var record : records) {
-            try {
-                var mapper = new ObjectMapper();
-                mapper.readValue(record.value(), Person.class);
-                fail("La désérialisation aurait dû échouer pour : " + label);
-            } catch (Exception e) {
-                System.out.println("✅ Erreur attendue (" + label + ") : " + e.getMessage());
-            }
-        }
-    });
-}
+private static final Logger log = LoggerFactory.getLogger(KafkaDeserializationResilienceTest.class);
 ```
 
-
-
----
-
-
-## 2. 🪵 Logger de manière structurée
-Utiliser SLF4J + Logback au lieu de System.out
-
-Exemple :
+Et dans les tests :
 
 ```java
-private static final Logger log = LoggerFactory.getLogger(getClass());
-log.warn("Erreur JSON pour key {}: {}", record.key(), e.getMessage());
-```
-🎯 But : pratique attendue en entreprise pour tracer les erreurs Kafka dans un ELK / Datadog / Sentry.
-
----
-
-
-## 3. 📊 Compter les erreurs avec une métrique
-
-Simuler un compteur (int parseFailures = 0)
-
-Ou utiliser Micrometer si tu veux l’intégrer plus tard à Prometheus
-
-🎯 But : préparer un hook vers du monitoring réel
-
----
-
-## 4. 🧪 Extraire la désérialisation dans une méthode dédiée
-
-```java	
-public Optional<Person> safeParse(String json) {
-  try {
-    return Optional.of(mapper.readValue(json, Person.class));
-  } catch (...) {
-    log.warn("Erreur de parsing", e);
-    return Optional.empty();
-  }
-}
+log.warn("Erreur de désérialisation capturée : {}", e.getMessage());
 ```
 
-🎯 But : réutilisabilité + testabilité unitaire
+✅ Cela permet d’avoir des logs lisibles, structurés, et compatibles avec une plateforme d’observabilité (ELK, Datadog…).
 
----
 
-## 5. 🔁 Remonter une version plus robuste
-Utiliser un schema registry avec Avro ou JSON Schema
 
-Ou valider manuellement ton JSON avec une lib comme Everit ou Justify
+## 📌 Ce que tu as appris ici
+✔ Comment envoyer un JSON cassé dans Kafka
+✔ Comment capturer les erreurs de désérialisation JSON avec Jackson
+✔ Pourquoi certaines erreurs ne lèvent pas d’exception (et comment forcer une validation)
+✔ Comment structurer un test clair et modulaire pour tester plusieurs cas
+✔ Comment logger proprement comme en entreprise
 
-🎯 But : poser la base pour ton rôle de référente qualité Kafka

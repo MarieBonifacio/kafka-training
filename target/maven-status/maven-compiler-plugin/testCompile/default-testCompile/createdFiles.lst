@@ -1,2 +1,3 @@
+com\example\kafka\KafkaDeserializationResilienceTest.class
 com\example\kafka\KafkaIntegrationPersonTest.class
 com\example\kafka\KafkaIntegrationTest.class
